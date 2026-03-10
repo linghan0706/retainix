@@ -1,0 +1,22 @@
+﻿#!/usr/bin/env sh
+set -eu
+
+MSG_FILE="$1"
+
+if pnpm exec commitlint --version >/dev/null 2>&1; then
+  pnpm exec commitlint --edit "$MSG_FILE"
+  exit 0
+fi
+
+# Fallback validation when commitlint is not installed.
+MSG="$(head -n 1 "$MSG_FILE")"
+PATTERN='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._/-]+\))?!?: .{1,}$'
+
+if echo "$MSG" | grep -Eq "$PATTERN"; then
+  exit 0
+fi
+
+echo "[commit-msg] invalid commit message: $MSG"
+echo "[commit-msg] expected: type(scope): subject"
+echo "[commit-msg] allowed types: feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert"
+exit 1

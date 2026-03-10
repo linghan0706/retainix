@@ -1,0 +1,11 @@
+﻿#!/usr/bin/env sh
+set -eu
+
+echo "[pre-commit] validating staged changes..."
+
+if pnpm exec lint-staged --version >/dev/null 2>&1; then
+  pnpm exec lint-staged
+else
+  echo "[pre-commit] lint-staged is not installed, fallback to repository lint."
+  pnpm -r --if-present lint
+fi

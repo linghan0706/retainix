@@ -1,0 +1,17 @@
+﻿#!/usr/bin/env sh
+set -eu
+
+if [ "${SKIP_PREPUSH:-0}" = "1" ]; then
+  echo "[pre-push] skipped by SKIP_PREPUSH=1"
+  exit 0
+fi
+
+echo "[pre-push] running lint/typecheck/test gates..."
+pnpm -r --if-present lint
+pnpm -r --if-present typecheck
+pnpm -r --if-present test
+
+if [ "${FULL_PREPUSH:-0}" = "1" ]; then
+  echo "[pre-push] FULL_PREPUSH=1, running build..."
+  pnpm -r --if-present build
+fi

@@ -1,0 +1,46 @@
+﻿name: Feature Request
+description: Propose a new feature or enhancement.
+title: "[Feature] "
+labels: ["type: feature", "status: triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What user pain point are we solving?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe the desired behavior and UX.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and Impact
+      description: Which modules/apps/packages will be affected?
+      placeholder: apps/web, apps/worker, packages/types ...
+
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Breaking Change
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: List verifiable outcomes.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...

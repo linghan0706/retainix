@@ -1,0 +1,36 @@
+﻿name: Task
+description: Engineering task or refactor ticket.
+title: "[Task] "
+labels: ["type: task", "status: triage"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What should be done?
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Plan
+      description: High-level technical plan.
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+      description: Known risks, trade-offs, rollback plan.
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How to validate completion?
+      placeholder: pnpm lint / tests / manual QA steps
